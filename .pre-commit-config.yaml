@@ -35,12 +35,6 @@ repos:
     -   id: reuse
 -   repo: local
     hooks:
-    - id: spack-style
-      name: spack-style
-      entry: spack style
-      language: system
-      pass_filenames: false
-      always_run: true
     - id: install-compilers
       name: install-compilers
       entry: python install-compilers.py
