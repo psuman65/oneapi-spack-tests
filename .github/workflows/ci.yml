@@ -17,7 +17,8 @@ jobs:
     - name: Install spack
       uses: actions/checkout@v2
       with:
-        repository: spack/spack
+        repository: rscohn2/spack
+        ref: dev/sycl-required-libs
         path: spack
     - name: Style and package tests
       run: |
