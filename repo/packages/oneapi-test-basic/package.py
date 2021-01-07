@@ -26,19 +26,21 @@ class OneapiTestBasic(Package):
         sha256="0eaea9c9c33b5d69c1a12044481bd38cc35f967a533b26a0d8c21c4c4d17249b",
     )
 
-    depends_on("intel-oneapi-dal")
-    depends_on("intel-oneapi-tbb")
+    # depends_on("intel-oneapi-dal")
+    # depends_on("intel-oneapi-tbb")
     depends_on("intel-oneapi-mkl")
-    depends_on("intel-oneapi-mpi")
+    # depends_on("intel-oneapi-mpi")
 
     def install(self, spec, prefix):
         sycl = "+sycl" in self.spec
         sycl_samples = "X=1" if sycl else "SYCL_SAMPLES="
-        make("-C", "samples", sycl_samples)
-        make(
-            "-C",
-            "samples",
-            "install",
-            "PREFIX={0}".format(prefix),
-            sycl_samples,
-        )
+        make("-C",
+             "samples",
+             "BASE_SAMPLES=mkl-sample",
+             sycl_samples)
+        make("-C",
+             "samples",
+             "install",
+             "BASE_SAMPLES=mkl-sample",
+             "PREFIX={0}".format(prefix),
+             sycl_samples)
